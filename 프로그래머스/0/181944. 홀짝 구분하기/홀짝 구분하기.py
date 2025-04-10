@@ -1,5 +1,6 @@
 a = int(input())
-if a%2:
-    print(str(a) + ' is odd')
+
+if a % 2 == 0:
+    print('{} is even'.format(a))
 else:
-    print(str(a) + ' is even')
+    print('{} is odd'.format(a))
