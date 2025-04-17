@@ -1,3 +1,5 @@
 def solution(arr, idx):
-
-    return arr[idx:].index(1)+idx if 1 in arr[idx:] else -1
+    for i in range(idx, len(arr)):
+        if arr[i] == 1:
+            return i
+    return -1
