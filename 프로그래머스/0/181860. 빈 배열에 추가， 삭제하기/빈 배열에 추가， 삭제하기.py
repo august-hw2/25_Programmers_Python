@@ -1,10 +1,10 @@
 def solution(arr, flag):
     res = []
 
-    for i in range(len(flag)):
-        if flag[i] == True:
-            res += [arr[i]]*(arr[i]*2)
+    for i, j in zip(arr, flag):
+        if j == True:
+            res += [i]*(i*2)
         else:
-            res = res[:-arr[i]]
+            res = res[:-i]
 
     return res
