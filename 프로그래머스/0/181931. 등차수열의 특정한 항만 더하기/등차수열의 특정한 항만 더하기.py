@@ -3,6 +3,5 @@
 def solution(a, d, included):
     res = 0
     for i in range(len(included)):
-        if included[i] == True:
-            res += a+i*d
+        res += (a + d * i) * int(included[i])
     return res
