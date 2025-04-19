@@ -1,9 +1,9 @@
-def solution(numbers, direction):
-    if direction == 'right':
-        tmp = numbers.pop(-1)
-        numbers.insert(0, tmp)
-    else:
-        tmp = numbers.pop(0)
-        numbers.append(tmp)
+from collections import deque
 
-    return numbers
+def solution(numbers, direction):
+    numbers = deque(numbers)
+    if direction == 'right':
+        numbers.rotate(1)
+    else:
+        numbers.rotate(-1)
+    return list(numbers)
