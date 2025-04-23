@@ -1,10 +1,9 @@
 def solution(s):
-    tmp = s.split(' ')
-    res = 0
-    for i in range(len(tmp)):
-        if tmp[i] != 'Z':
-            res += int(tmp[i])
+    stack = []
+    for i in s.split():
+        if i != 'Z':
+            stack.append(int(i))
         else:
-            res -= int(tmp[i-1])
-
-    return res
+            if stack:
+                stack.pop()
+    return sum(stack)
