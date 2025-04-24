@@ -1,9 +1,10 @@
+import operator
 def solution(ineq, eq, n, m):
-    if ineq == ">" and eq == "=":
-        return int(n >= m)
-    elif ineq == "<" and eq == "=":
-        return int(n <= m)
-    elif ineq == ">" and eq == "!":
-        return int(n > m)
-    else:
-        return int(n < m)
+    ops = {
+        '>=': operator.ge,  # greater than or equal
+        '<=': operator.le,  # less than or equal
+        '>': operator.gt,  # greater than
+        '<': operator.lt  # less than
+    }
+    key = ineq + eq.replace('!', '')
+    return int(ops[key](n, m))
