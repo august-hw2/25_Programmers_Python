@@ -1,15 +1,8 @@
 def solution(common):
-    answer = 0
-
-    if common[2]-common[1] != common[1]-common[0]: #등비수열
-        return common[0] * (common[1]//common[0])**(len(common))
+    
+    a, b, c = common[:3]
+    
+    if c-b != b-a: #등비수열
+        return common[-1] * (b//a)
     else: #등차수열
-        return common[0] + len(common) * (common[1]-common[0])
-
-'''
-> 등차수열
-An = a + (n - 1) * d
-
-> 등비수열
-An = a * r^(n - 1)
-'''
+        return common[-1] + (b-a)
