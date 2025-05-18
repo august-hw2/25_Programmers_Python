@@ -4,9 +4,13 @@ def solution(quiz):
 
     for i in quiz:
         tmp = i.split(' = ')
-        if eval(tmp[0]) == int(tmp[1]):
-            ans.append("O")
+        x, op, y = tmp[0].split()
+
+        if op == "+":
+            j = 'O' if int(x) + int(y) == int(tmp[1]) else 'X'
+            ans.append(j)
         else:
-            ans.append("X")
+            j = 'O' if int(x) - int(y) == int(tmp[1]) else 'X'
+            ans.append(j)
 
     return ans
