@@ -1,11 +1,8 @@
 def solution(picture, k):
     answer = []
 
-    for i in picture:
-        tmp = []
-        for j in i:
-            tmp.append(j*k)
-        for p in range(k):
-            answer.append(''.join(tmp))
+    for row in picture:
+        tmp = ''.join(p * k for p in row)
+        answer.extend([tmp]*k)
 
     return answer
