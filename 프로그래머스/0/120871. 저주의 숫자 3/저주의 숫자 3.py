@@ -1,14 +1,14 @@
 def solution(n):
 
-    answer = []
-    i = 1
+    ans, cnt = 0, 0
 
-    while len(answer) < n:
+    while cnt < n:
 
-        if '3' in str(i) or i%3 == 0:
-            pass
-        else:
-            answer.append(i)
-        i += 1
+        ans += 1
 
-    return answer[-1]
+        if '3' in str(ans) or ans%3 == 0:
+            continue
+
+        cnt += 1
+
+    return ans
