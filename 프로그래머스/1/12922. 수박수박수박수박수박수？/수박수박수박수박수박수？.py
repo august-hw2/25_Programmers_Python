@@ -1,7 +1,7 @@
 def solution(n):
-    answer = ''
+    answer = []
 
     for i in range(n):
-        answer += '박' if i%2 else '수'
+        answer.append('박') if i%2 else answer.append('수')
 
-    return answer
+    return ''.join(answer)
