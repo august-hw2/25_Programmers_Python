@@ -1,13 +1,12 @@
 def solution(s):
-    answer = []
-    tmp = []
+    last_index = dict()
+    result = []
 
-    for i in s:
-        if i not in tmp:
-            tmp.append(i)
-            answer.append(-1)
+    for idx, char in enumerate(s):
+        if char in last_index:
+            result.append(idx - last_index[char])
         else:
-            answer.append(len(tmp) - ''.join(tmp).rfind(i))
-            tmp.append(i)
+            result.append(-1)
+        last_index[char] = idx
 
-    return answer
+    return result
