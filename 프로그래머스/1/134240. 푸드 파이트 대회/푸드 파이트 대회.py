@@ -1,8 +1,7 @@
 def solution(food):
-    answer = []
-    cnt = [i//2 for i in food]
+    answer = ''
 
-    for j in range(len(cnt)):
-        answer.append(str(j)*cnt[j])
+    for j in range(1, len(food)):
+        answer += str(j)*(food[j]//2)
 
-    return ''.join(answer[1:]) + '0' + ''.join(answer[1:])[::-1]
+    return answer + '0' + answer[::-1]
