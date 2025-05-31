@@ -14,6 +14,7 @@ def solution(number, limit, power):
     answer = []
 
     for i in range(1, number+1):
-        answer.append(count(i) if count(i) < limit+1 else power)
+        c = count(i)
+        answer.append(c if c <= limit else power)
 
     return sum(answer)
