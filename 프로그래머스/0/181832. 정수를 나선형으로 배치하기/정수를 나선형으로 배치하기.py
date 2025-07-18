@@ -1,30 +1,15 @@
 def solution(n):
-    if n == 1:
-        return [[1]]
-    
-    answer = [[0 for j in range(n)] for i in range(n)] # 배열 초기화
-    
-    x = 0
-    y = 0
-    dir = 'r'
-    
-    for i in range(n*n):
-        answer[x][y] = i + 1
-        if dir == 'r':
-            y += 1
-            if y == n-1 or answer[x][y+1] != 0: # 맨 끝에 도달했거나 가려는 곳에 이미 값이 있으면 방향 전환
-                dir = 'd'
-        elif dir == 'd':
-            x += 1
-            if x == n-1 or answer[x+1][y] != 0:
-                dir = 'l'
-        elif dir == 'l':
-            y -= 1
-            if y == 0 or answer[x][y-1] != 0:
-                dir = 'u'
-        elif dir == 'u':
-            x -= 1
-            if x == n-1 or answer[x-1][y] != 0:
-                dir = 'r'
-                
+    answer = [[0]*n for _ in range(n)]
+    dx = [0, 1, 0, -1]  # 우, 하, 좌, 상
+    dy = [1, 0, -1, 0]
+    x, y, d = 0, 0, 0
+
+    for i in range(1, n*n + 1):
+        answer[x][y] = i
+        nx, ny = x + dx[d], y + dy[d]
+        if nx < 0 or nx >= n or ny < 0 or ny >= n or answer[nx][ny] != 0:
+            d = (d + 1) % 4  # 방향 전환
+            nx, ny = x + dx[d], y + dy[d]
+        x, y = nx, ny
+
     return answer
