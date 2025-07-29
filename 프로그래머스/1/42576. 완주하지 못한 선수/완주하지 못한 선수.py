@@ -1,12 +1,7 @@
+from collections import Counter
+
 def solution(participant, completion):
-    hashDict = {}
-    sumHash = 0
 
-    for part in participant:
-        hashDict[hash(part)] = part
-        sumHash += hash(part)
+    cnt = Counter(participant) - Counter(completion)
 
-    for com in completion:
-        sumHash -= hash(com)
-
-    return hashDict[sumHash]
+    return list(cnt.keys())[0]
