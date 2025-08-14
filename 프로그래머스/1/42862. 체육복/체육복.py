@@ -1,20 +1,18 @@
 def solution(n, lost, reserve):
+    # 중복 제거
+    lost = set(lost)
+    reserve = set(reserve)
 
-    #오름차순 정렬
-    lost.sort()
-    reserve.sort()
+    # 1) 여벌도 잃어버린 학생 정리 (자기 옷 먼저 사용)
+    inter = lost & reserve
+    lost -= inter
+    reserve -= inter
 
-    #중복 제거
-    for idx in reserve[:]:
-        if idx in lost:
-            lost.remove(idx)
-            reserve.remove(idx)
-
-    #체육복 빌려주기
-    for r in reserve:
-        if r-1 in lost: #앞쪽 여유분 확인
+    # 2) 빌려주기: 왼쪽 먼저, 안 되면 오른쪽
+    for r in sorted(reserve):
+        if r - 1 in lost:
             lost.remove(r - 1)
-        elif r+1 in lost: #뒷쪽 여유분 확인
+        elif r + 1 in lost:
             lost.remove(r + 1)
 
     return n - len(lost)
