@@ -5,7 +5,7 @@ def solution(new_id):
     s = new_id.lower()
     
     # 알파벳 소문자, 숫자, 빼기, 밑줄, 마침표 제외한 모든 문자 제거
-    s = "".join([ch for ch in s if ch.isalnum() or ch in "-_."])
+    s = re.sub(r'[^a-z0-9\-_.]', '', s)
     
     # 마침표 2번 반복 -> 1번으로 치환
     s = re.sub( r'\.+', '.', s)
