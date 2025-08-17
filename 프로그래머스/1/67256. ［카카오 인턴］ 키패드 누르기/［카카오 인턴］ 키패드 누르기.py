@@ -1,21 +1,5 @@
-def distance(h, p, l, r):
-
-    (x1, y1) = p
-    (x2, y2) = l
-    (x3, y3) = r
-
-    l_p = abs(x2-x1) + abs(y2-y1)
-    r_p = abs(x3-x1) + abs(y3-y1)
-
-    if l_p < r_p:
-        return 'L'
-    elif l_p > r_p:
-        return 'R'
-    else:
-        return 'L' if h == 'left' else 'R'
-
 def solution(numbers, hand):
-    answer = ''
+    answer = []
     keypad = [
         ['1', '2', '3'],
         ['4', '5', '6'],
@@ -31,20 +15,37 @@ def solution(numbers, hand):
             
     # 시작 위치 초기화
     left = pos['*']
-    right = pos['#']
+    right = pos['#']    
+    
+    # 지역 함수 -> 가독성과 코드 구조화에 도움됨 (<-> 전역 함수: 재사용을 위해 범위를 넓히는 대신 헷갈릴 수 있음)
+    def distance(h, p, l, r):
+
+        (x1, y1) = p
+        (x2, y2) = l
+        (x3, y3) = r
+
+        l_p = abs(x2 - x1) + abs(y2 - y1)
+        r_p = abs(x3 - x1) + abs(y3 - y1)
+
+        if l_p < r_p:
+            return 'L'
+        elif l_p > r_p:
+            return 'R'
+        else:
+            return 'L' if h == 'left' else 'R'
 
     for i in numbers:
         point = pos[str(i)]
         if i in (1, 4, 7):
-            answer += 'L'
+            answer.append('L')
             left = point
         elif i in (3, 6, 9):
-            answer += 'R'
+            answer.append('R')
             right = point
         else:
             # 왼손과 오른손의 각각 거리 계산
             choose = distance(hand, point, left, right)
-            answer += choose
+            answer.append(choose)
             
             # 선택한 손의 위치 갱신
             if choose == 'L':
@@ -52,4 +53,4 @@ def solution(numbers, hand):
             else:
                 right = point
 
-    return answer
+    return ''.join(answer)
