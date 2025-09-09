@@ -5,8 +5,8 @@ def solution(ingredient):
 
     for i in ingredient:
         s.append(i)
-        if s[-4:] == [1, 2, 3, 1]:
+        if len(s) >= 4 and s[-4:] == [1, 2, 3, 1]:
             answer += 1
             del s[-4:]
-    
+
     return answer
